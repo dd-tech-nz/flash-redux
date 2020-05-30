@@ -1,6 +1,5 @@
-const CARD_DATA = {
+const CARD_DATA = [
   
-    cards: [
       {
         id: 1,
         question: 'What is a higher order function?',
@@ -19,17 +18,8 @@ const CARD_DATA = {
         imageLink: 'https://miro.medium.com/max/600/1*2N0l3bLqaBgmOSIay-uc5w.png',
         priority: 5,
       }
-    ],
-  
+   
  
-    currentCard: {},
- 
-  
-    seenCards: [],
- 
-  
-    endOfDeck: false
- 
-}
+  ]
 
 export default CARD_DATA

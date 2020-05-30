@@ -13,7 +13,7 @@ class App extends Component {
 
   componentDidMount() {
     const {getRandomCard, cardData} = this.props
-    getRandomCard(cardData.cards)
+    getRandomCard(cardData)
   }
  
   render() {
@@ -26,7 +26,9 @@ class App extends Component {
           <div className="cardRow">
           <Card
             // eod={this.state.endOfDeck}
-           card={this.props.cardData[0]}
+                question={this.props.cardData[0].question}
+                answer={this.props.cardData[0].answer}
+                image={this.props.cardData[0].imageLink}
           />
           
             </div>

@@ -2,7 +2,7 @@ import React from 'react'
 
 // import './Card.css'
 
-const Card = (card) => {
+const Card = (props) => {
   // if (props.eod) {
   //   return (
   //     <div className="card-container">
@@ -17,20 +17,20 @@ const Card = (card) => {
   //     </div>
   //   )
   // } else {
-  console.log(card)
+  console.log(props)
   
  
     return (
       <div className="card-container">
         <div className="card">
           <div className="front">
-            <div className="question">{card.question}</div>
+            <div className="question">{props.question}</div>
             <div className="image">
-              <img src={card.image} alt='graphic not available' />
+              <img src={props.image} alt='graphic not available' />
             </div>
           </div>
           <div className="back">
-            <div className="answer">{card.answer}</div>
+            <div className="answer">{props.answer}</div>
           </div>
         </div>
       </div>
