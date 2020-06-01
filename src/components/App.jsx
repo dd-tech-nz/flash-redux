@@ -17,7 +17,7 @@ class App extends Component {
   }
  
   render() {
-    console.log(this.props.cardData[0])
+    console.log(this.props.randomCard)
     return (
       <div>
         <Route exact path='/' component={Header} />
@@ -26,9 +26,7 @@ class App extends Component {
           <div className="cardRow">
           <Card
             // eod={this.state.endOfDeck}
-                question={this.props.cardData[0].question}
-                answer={this.props.cardData[0].answer}
-                image={this.props.cardData[0].imageLink}
+               card = {this.props.randomCard}
           />
           
             </div>

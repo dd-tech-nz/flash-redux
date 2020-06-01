@@ -5,7 +5,10 @@ import {getRandomCard} from '../redux/actions'
 
 function mapStateToProps(state) {
   return {
-    cardData: state
+    cardData: state.cards,
+    randomCard: state.randomCard,
+    seenCard: state.seenCard,
+    endOfDeck: state.endOfDec
   }
 }
 
