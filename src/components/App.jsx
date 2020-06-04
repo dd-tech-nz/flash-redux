@@ -9,15 +9,45 @@ import Answers from './Answers'
 import ResetButton from './ResetButton'
 import { Route } from 'react-router-dom'
 
-class App extends Component {
 
-  componentDidMount() {
-    const {getRandomCard, cardData} = this.props
-    getRandomCard(cardData)
+class App extends Component {
+  constructor() {
+    super()
+
+    this.updateCard = this.updateCard.bind(this)
+    this.state = {
+      randomCard: {}
+    }
   }
+
+ 
+
+componentDidMount() {
+  this.setState({
+    randomCard: this.getRandomCard()
+  })
+  }
+
+  getRandomCard() {
+    const { availableCards, updateDeck } = this.props
+    let card = availableCards[Math.floor(Math.random() * availableCards.length)]
+    updateDeck(card)
+    return (card)
+  }
+
+  updateCard() {
+    const { endOfDeck, availableCards, setEndOfDeck } = this.props
+    // this.props.addSeenCard(randomCard[0].id)
+    this.setState({
+      randomCard: this.getRandomCard()
+    })
+    
+    const atEnd = endOfDeck || (availableCards.length <= 0)
+    setEndOfDeck(atEnd)
+  }
+  
  
   render() {
-    console.log(this.props.randomCard)
     return (
       <div>
         <Route exact path='/' component={Header} />
@@ -25,12 +55,15 @@ class App extends Component {
           <div className="App">
           <div className="cardRow">
           <Card
-            // eod={this.state.endOfDeck}
-               card = {this.props.randomCard}
-          />
-          
+                card={this.state.randomCard}
+              />
+              <div className="buttonRow">
+                <DrawButton
+                  drawCard={this.updateCard}
+                  eod={this.props.endOfDeck}
+              />
             </div>
-            
+            </div>
           </div>
           )}/>
        </div>

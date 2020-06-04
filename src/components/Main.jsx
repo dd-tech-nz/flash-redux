@@ -1,19 +1,20 @@
 import App from './App'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {getRandomCard} from '../redux/actions'
+import {updateDeck, setEndOfDeck} from '../redux/actions'
 
 function mapStateToProps(state) {
   return {
     cardData: state.cards,
-    randomCard: state.randomCard,
-    seenCard: state.seenCard,
-    endOfDeck: state.endOfDec
+    availableCards: state.availableCards,
+    // randomCard: state.randomCard,
+    // seenCards: state.seenCards,
+    endOfDeck: state.endOfDeck
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getRandomCard }, dispatch)
+  return bindActionCreators({ updateDeck, setEndOfDeck }, dispatch)
 }
 
 const Main = connect(mapStateToProps, mapDispatchToProps)(App)
