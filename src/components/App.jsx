@@ -20,8 +20,6 @@ class App extends Component {
     }
   }
 
- 
-
 componentDidMount() {
   this.setState({
     randomCard: this.getRandomCard()
@@ -37,13 +35,16 @@ componentDidMount() {
 
   updateCard() {
     const { endOfDeck, availableCards, setEndOfDeck } = this.props
-    // this.props.addSeenCard(randomCard[0].id)
     this.setState({
       randomCard: this.getRandomCard()
     })
     
     const atEnd = endOfDeck || (availableCards.length <= 0)
     setEndOfDeck(atEnd)
+  }
+
+  Reset() {
+    window.location.reload()
   }
   
  
@@ -53,6 +54,11 @@ componentDidMount() {
         <Route exact path='/' component={Header} />
         <Route exact path="/" render={() => (
           <div className="App">
+          <div className="reset">
+          <ResetButton
+            onReset={this.Reset}
+          />
+    </div>
           <div className="cardRow">
           <Card
                 card={this.state.randomCard}
@@ -64,8 +70,24 @@ componentDidMount() {
               />
             </div>
             </div>
+            <div className="answers">
+              <Answers
+                card={this.state.currentCard}
+                onknowAnswer={this.knowAnswer}/>
+            </div>
           </div>
-          )}/>
+        )} />
+        <Route path="/AddCard" render={({history}) => (
+          <AddCard onAddCard={(addedCard) => {
+            this.addCard(addedCard)
+            history.push('/')
+          }}/>
+        )} />
+        <Route path="/Decks" render={() => (
+          <div className="cardGrid">
+            <Deck cards={this.state.cards} onRemoveCard={this.removeCard}/>
+          </div>
+        )} />
        </div>
     )
   }
